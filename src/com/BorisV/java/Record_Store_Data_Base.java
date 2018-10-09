@@ -1,29 +1,33 @@
 package com.BorisV.java;
 
 import java.sql.*;
+import java.util.Date;
+import java.time.LocalDate;
 
 public class Record_Store_Data_Base extends Consignors_Model{
-    // TODO: 10/8/2018 Change the code to env var? next two lines.
+
     private static String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; //New Driver add jc. Old was com.mysql.jdbc.Driver.
     private static String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/";
-    // TODO: 10/8/2018 Create an env var to store user, password, db, and table.
-    private static final String USER = "user_records";
-    private static final String PASS = "user_records";
 
+    // The user name in an env. var.
+    private static final String USER = System.getenv("user");
+    // The password is an env. var.
+    private static final String PASS = System.getenv("password");
+    // DB is an env. var.
+    private static final String DB_NAME = System.getenv("db_name");
 
-    private static final String DB_NAME = "record_store_db";
-
-    protected final static String RECSTORE_DATA_TABLE = "albums";
+    protected final static String TABLE_NAME = System.getenv("table_m");
 
 
     protected final static String PK_COLUMN = "AlbumID";
     protected final static String ARTIST_NAME = "Artist";
     protected final static String ALBUM_NAME = "Title";
-    protected final static String CONSIGNOR_ID = "CON_ID";
+    protected final static String CONSIGNOR_ID = "ConsignorID";
     protected final static String PRICE = "Price";
-    protected final static String DATEREC = "Date_Received";
+    protected final static String DATE_ENTERED = "Date_Entered";
 
-    protected final static String CONSIGNORS_TABLE = "consignors";
+    // Table is an env. var.
+    protected final static String CONSIGNORS_TABLE = System.getenv("table_cong");
     protected final static String CONSIGNOR_NAME = "Consignor_Name";
     protected final static String CONSIGNOR_PHONE = "Consignor_Phone";
 
@@ -38,9 +42,6 @@ public class Record_Store_Data_Base extends Consignors_Model{
 
     private static Consignors_Model consignors_model;
     private static Record_Store_Data_Model recordStore_data_model;
-
-    java.util.Date date;
-    java.sql.Date sqlDate;
 
     Record_Store_Data_Base(ResultSet rs2) {
         super(rs2);
@@ -84,14 +85,14 @@ public class Record_Store_Data_Base extends Consignors_Model{
             if (!recStoreDataTableExist()) {
 
                 //Create a table in the database with 3 columns: Movie title, year and rating
-                String createTableSQL = "CREATE TABLE " + RECSTORE_DATA_TABLE + " (" + PK_COLUMN + " int NOT NULL AUTO_INCREMENT, " + ARTIST_NAME +
+                String createTableSQL = "CREATE TABLE " + TABLE_NAME + " (" + PK_COLUMN + " int NOT NULL AUTO_INCREMENT, " + ARTIST_NAME +
                         " varchar(50), " + ALBUM_NAME + " varchar(50), " + CONSIGNOR_ID +
                         " int, " + PRICE + " DOUBLE, PRIMARY KEY(" + PK_COLUMN + "))";
                 stmtRecStore.executeUpdate(createTableSQL);
                 //This will print out a message that table was created
                 System.out.println("Created albums table");
 
-                String addDataSQL = "INSERT INTO " + RECSTORE_DATA_TABLE + " (" + ARTIST_NAME + ", " + ALBUM_NAME + ", " + CONSIGNOR_ID + ", " +
+                String addDataSQL = "INSERT INTO " + TABLE_NAME + " (" + ARTIST_NAME + ", " + ALBUM_NAME + ", " + CONSIGNOR_ID + ", " +
                         PRICE + ") " + " VALUES (?, ?, ?, ?)";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(addDataSQL);
@@ -139,7 +140,7 @@ public class Record_Store_Data_Base extends Consignors_Model{
 
     private static boolean recStoreDataTableExist() throws SQLException{
 
-        String checkTablePresentS = "SHOW TABLES LIKE '" + RECSTORE_DATA_TABLE + "'" ;
+        String checkTablePresentS = "SHOW TABLES LIKE '" + TABLE_NAME + "'" ;
         ResultSet tablesRS = stmtRecStore.executeQuery(checkTablePresentS);
         if (tablesRS.next()) {
             return  true;
@@ -169,7 +170,7 @@ public class Record_Store_Data_Base extends Consignors_Model{
             }
 
 
-            String loadAlbums = "SELECT * FROM " + RECSTORE_DATA_TABLE;
+            String loadAlbums = "SELECT * FROM " + TABLE_NAME;
             rsRecStore = stmtRecStore.executeQuery(loadAlbums);
 
             if (recordStore_data_model == null) {
