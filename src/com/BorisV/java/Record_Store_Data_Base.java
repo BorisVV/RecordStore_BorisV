@@ -1,7 +1,7 @@
 package com.BorisV.java;
 
 import java.sql.*;
-import java.util.Date;
+import java.util.Calendar;
 import java.time.LocalDate;
 
 public class Record_Store_Data_Base extends Consignors_Model{
@@ -16,7 +16,7 @@ public class Record_Store_Data_Base extends Consignors_Model{
     // DB is an env. var.
     private static final String DB_NAME = System.getenv("db_name");
 
-    protected final static String TABLE_NAME = System.getenv("table_m");
+    protected final static String TABLE_NAME = System.getenv("table_a");
 
 
     protected final static String PK_COLUMN = "AlbumID";
@@ -87,20 +87,20 @@ public class Record_Store_Data_Base extends Consignors_Model{
                 //Create a table in the database with 3 columns: Movie title, year and rating
                 String createTableSQL = "CREATE TABLE " + TABLE_NAME + " (" + PK_COLUMN + " int NOT NULL AUTO_INCREMENT, " + ARTIST_NAME +
                         " varchar(50), " + ALBUM_NAME + " varchar(50), " + CONSIGNOR_ID +
-                        " int, " + PRICE + " DOUBLE, PRIMARY KEY(" + PK_COLUMN + "))";
+                        " int, " + PRICE + " DOUBLE, " + DATE_ENTERED + " PRIMARY KEY(" + PK_COLUMN + "))";
                 stmtRecStore.executeUpdate(createTableSQL);
                 //This will print out a message that table was created
-                System.out.println("Created albums table");
+                System.out.println("Created table a...");
 
                 String addDataSQL = "INSERT INTO " + TABLE_NAME + " (" + ARTIST_NAME + ", " + ALBUM_NAME + ", " + CONSIGNOR_ID + ", " +
-                        PRICE + ") " + " VALUES (?, ?, ?, ?)";
+                        PRICE + ", " + DATE_ENTERED + ") " + " VALUES (?, ?, ?, ?)";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(addDataSQL);
                 ps.setString(1, "Marc Anthony");
                 ps.setString(2, "Si tu supieras");
                 ps.setInt(3, 55);
                 ps.setDouble(4, 10.99);
-//                ps.setDate();
+                ps.setDate(5, Date.valueOf(LocalDate.now()));
 
 
                 ps.executeUpdate();

@@ -24,7 +24,6 @@ public class Add_New_AlbumsGUI extends JFrame {
 
         picLabel.setIcon(new ImageIcon("src/Pictures/Record-Player-icon-72.png"));
 
-
         addAlbumButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
