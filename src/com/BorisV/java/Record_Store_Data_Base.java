@@ -3,7 +3,7 @@ package com.BorisV.java;
 import java.sql.*;
 
 public class Record_Store_Data_Base extends Consignors_Model{
-    // TODO: 10/8/2018 Change the code to env var? next two lines. 
+    // TODO: 10/8/2018 Change the code to env var? next two lines.
     private static String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; //New Driver add jc. Old was com.mysql.jdbc.Driver.
     private static String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/";
     // TODO: 10/8/2018 Create an env var to store user, password, db, and table.
@@ -32,9 +32,6 @@ public class Record_Store_Data_Base extends Consignors_Model{
 
     static ResultSet rsConsignors = null;
     static ResultSet rsRecStore = null;
-
-
-
 
     static Connection conn = null;
 
@@ -82,6 +79,7 @@ public class Record_Store_Data_Base extends Consignors_Model{
 
             stmtRecStore = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             stmtConsignors = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
             //Does the table exist? If not, create it.
             if (!recStoreDataTableExist()) {
 
