@@ -59,11 +59,16 @@ public class Add_New_AlbumsGUI extends JFrame {
                 boolean insertRow = record_store_data_model.insertRow(artist, title, consignor, price);
                 if (!insertRow) {
                     JOptionPane.showMessageDialog(rootPane, "Error adding new data");
+                    return;
                 }
 
                 artistTextField.setText(null);
                 titleTextField.setText(null);
                 priceTextField.setText(null);
+
+                if (JOptionPane.YES_OPTION != JOptionPane.showConfirmDialog(rootPane, "Add more albums?", "Add more?", JOptionPane.YES_NO_OPTION)) {
+                        setVisible(false);
+                }
             }
         });
     }
