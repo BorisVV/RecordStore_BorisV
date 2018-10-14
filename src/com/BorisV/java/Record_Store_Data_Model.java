@@ -92,8 +92,6 @@ public class Record_Store_Data_Model  extends AbstractTableModel {
     }
 
 
-
-
     public boolean insertRow(String artist, String title, int consignor, double price) {
 
         try {

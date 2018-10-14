@@ -87,21 +87,19 @@ public class Record_Store_Data_Base extends Consignors_Model{
                 //Create a table in the database with 3 columns: Movie title, year and rating
                 String createTableSQL = "CREATE TABLE " + TABLE_NAME + " (" + PK_COLUMN + " int NOT NULL AUTO_INCREMENT, " + ARTIST_NAME +
                         " varchar(50), " + ALBUM_NAME + " varchar(50), " + CONSIGNOR_ID +
-                        " int, " + PRICE + " DOUBLE, " + DATE_ENTERED + " PRIMARY KEY(" + PK_COLUMN + "))";
+                        " int, " + PRICE + " DOUBLE PRIMARY KEY(" + PK_COLUMN + "))";
                 stmtRecStore.executeUpdate(createTableSQL);
                 //This will print out a message that table was created
                 System.out.println("Created table a...");
 
                 String addDataSQL = "INSERT INTO " + TABLE_NAME + " (" + ARTIST_NAME + ", " + ALBUM_NAME + ", " + CONSIGNOR_ID + ", " +
-                        PRICE + ", " + DATE_ENTERED + ") " + " VALUES (?, ?, ?, ?)";
+                        PRICE + ") " + " VALUES (?, ?, ?)";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(addDataSQL);
                 ps.setString(1, "Marc Anthony");
                 ps.setString(2, "Si tu supieras");
                 ps.setInt(3, 55);
                 ps.setDouble(4, 10.99);
-                ps.setDate(5, Date.valueOf(LocalDate.now()));
-
 
                 ps.executeUpdate();
             }

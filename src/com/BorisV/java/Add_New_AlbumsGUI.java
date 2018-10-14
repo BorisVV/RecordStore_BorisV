@@ -10,7 +10,7 @@ public class Add_New_AlbumsGUI extends JFrame {
     private JPanel rootPanel;
     private JTextField priceTextField;
     private JButton addAlbumButton;
-  
+
     private JLabel picLabel;
 
     public Add_New_AlbumsGUI(final Record_Store_Data_Model record_store_data_model, Consignors_Model consignors_model) {

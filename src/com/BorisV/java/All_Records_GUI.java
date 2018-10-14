@@ -29,7 +29,6 @@ public class All_Records_GUI extends JFrame {
         setTitle("RECORD STORE");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         albumsTable.setGridColor(Color.black);
         albumsTable.setModel(recordStore_data_model);
 
