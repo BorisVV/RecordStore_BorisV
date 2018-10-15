@@ -29,8 +29,6 @@ public class Consignors_Model extends AbstractTableModel {
     }
 
 
-
-
     @Override
     public int getRowCount() {
          count_Rows();

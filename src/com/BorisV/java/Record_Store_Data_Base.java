@@ -1,8 +1,6 @@
 package com.BorisV.java;
 
 import java.sql.*;
-import java.util.Calendar;
-import java.time.LocalDate;
 
 public class Record_Store_Data_Base extends Consignors_Model{
 
@@ -17,17 +15,16 @@ public class Record_Store_Data_Base extends Consignors_Model{
     private static final String DB_NAME = System.getenv("db_name");
 
     protected final static String TABLE_NAME = System.getenv("table_a");
-
-
+//
     protected final static String PK_COLUMN = "AlbumID";
     protected final static String ARTIST_NAME = "Artist";
     protected final static String ALBUM_NAME = "Title";
-    protected final static String CONSIGNOR_ID = "ConsignorID";
     protected final static String PRICE = "Price";
-    protected final static String DATE_ENTERED = "Date_Entered";
+//    protected final static String DATE_ENTERED = "Date_Entered";
 
     // Table is an env. var.
     protected final static String CONSIGNORS_TABLE = System.getenv("table_cong");
+    protected final static String CONSIGNOR_ID = "ConsignorID";
     protected final static String CONSIGNOR_NAME = "Consignor_Name";
     protected final static String CONSIGNOR_PHONE = "Consignor_Phone";
 
@@ -93,7 +90,7 @@ public class Record_Store_Data_Base extends Consignors_Model{
                 System.out.println("Created table a...");
 
                 String addDataSQL = "INSERT INTO " + TABLE_NAME + " (" + ARTIST_NAME + ", " + ALBUM_NAME + ", " + CONSIGNOR_ID + ", " +
-                        PRICE + ") " + " VALUES (?, ?, ?)";
+                        PRICE + ") " + " VALUES (?, ?, ?, ?)";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(addDataSQL);
                 ps.setString(1, "Marc Anthony");
@@ -108,19 +105,17 @@ public class Record_Store_Data_Base extends Consignors_Model{
             if (!consignorDataTableExist()) {
 
                 //Create a table in the database with 3 columns: Movie title, year and rating
-                String createTableConsingor = "CREATE TABLE " + CONSIGNORS_TABLE + "(" + CONSIGNOR_ID +
-                        " int , " + CONSIGNOR_NAME + " varchar(50), " + CONSIGNOR_PHONE +
+                String createTableConsingor = "CREATE TABLE " + CONSIGNORS_TABLE + "("+ CONSIGNOR_ID + " int NOT NULL AUTO_INCREMENT, " + CONSIGNOR_NAME + " varchar(50), " + CONSIGNOR_PHONE +
                         " varchar(20), PRIMARY KEY (" + CONSIGNOR_ID + "))";
                 stmtConsignors.executeUpdate(createTableConsingor);
                 //This will print out a message that table was created
                 System.out.println("Created consignor table");
 
-                String addDataConsig = "INSERT INTO " + CONSIGNORS_TABLE + "(" + CONSIGNOR_ID + ", "+ CONSIGNOR_NAME + ", " + CONSIGNOR_PHONE + ")" + " VALUES (?, ?, ?)";
+                String addDataConsig = "INSERT INTO " + CONSIGNORS_TABLE + "( "+ CONSIGNOR_NAME + ", " + CONSIGNOR_PHONE + ")" + " VALUES (?, ?)";
                 PreparedStatement ps2;
                 ps2 = conn.prepareStatement(addDataConsig);
-                ps2.setInt(1, 1);
-                ps2.setString(2, "Marc Anthony");
-                ps2.setString(3, "685555555");
+                ps2.setString(1, "Marc Anthony");
+                ps2.setString(2, "685555555");
                 ps2.executeUpdate();
             }
 
