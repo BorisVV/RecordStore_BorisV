@@ -66,7 +66,7 @@ public class Add_New_AlbumsGUI extends JFrame {
                 titleTextField.setText(null);
                 priceTextField.setText(null);
 
-                if (JOptionPane.YES_OPTION != JOptionPane.showConfirmDialog(rootPane, "Add more albums?", "Add more?", JOptionPane.YES_NO_OPTION)) {
+                if (JOptionPane.YES_OPTION != JOptionPane.showConfirmDialog(rootPane, "Album was added successfully, \nAdd more albums?", "Add more?", JOptionPane.YES_NO_OPTION)) {
                         setVisible(false);
                 }
             }

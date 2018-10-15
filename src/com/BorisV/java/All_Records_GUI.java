@@ -17,7 +17,6 @@ public class All_Records_GUI extends JFrame {
     private JList list1;
     private JTextField showTextField;
 
-    private static Add_New_AlbumsGUI record_store_gui;
     private static Add_New_Consignor_GUI add_new_consignor_gui;
 
     public All_Records_GUI(final Record_Store_Data_Model recordStore_data_model, Consignors_Model consignors_model) {
@@ -39,7 +38,7 @@ public class All_Records_GUI extends JFrame {
         addAlbumsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                record_store_gui = new Add_New_AlbumsGUI(recordStore_data_model, null);
+             Add_New_AlbumsGUI addNewAlbumsGUI = new Add_New_AlbumsGUI(recordStore_data_model, null);
             }
         });
 
@@ -50,8 +49,8 @@ public class All_Records_GUI extends JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Please choose an album to delete");
                 return;
             }
-            if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(All_Records_GUI.this,
-                    "Are you sure?", "Delete", JOptionPane.OK_CANCEL_OPTION)) {
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(All_Records_GUI.this,
+                    "Are you sure?", "Delete", JOptionPane.YES_NO_OPTION)) {
                 boolean deleted = recordStore_data_model.deleteRowRecordSt(currentRow);
                 if (deleted) {
                     Record_Store_Data_Base.loadTables();
@@ -61,6 +60,9 @@ public class All_Records_GUI extends JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Error deleting album");
                 }
             }
+
+            // Remove the cursor, un-select all
+            albumsTable.clearSelection();
         });
 
 
