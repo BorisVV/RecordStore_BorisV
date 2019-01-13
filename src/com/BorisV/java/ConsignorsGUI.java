@@ -11,8 +11,9 @@ public class ConsignorsGUI extends JFrame {
     private JTable consignorTable;
     private JButton addNewConsignorButton;
     private JPanel rootPanel;
+    private JButton modifyConsig;
 
-    Consignors_Model consignors_model;
+//    Consignors_Model consignors_model;
     Add_New_Consignor_GUI add_new_consignor_gui;
 
     public ConsignorsGUI(Consignors_Model consignors_model) {
@@ -30,6 +31,19 @@ public class ConsignorsGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 add_new_consignor_gui = new Add_New_Consignor_GUI(consignors_model);
+            }
+        });
+
+        modifyConsig.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int currentRow = consignorTable.getSelectedRow();
+
+                // If no row is selected.
+                if (currentRow == -1) {
+                    JOptionPane.showMessageDialog(rootPane, "Please select a row!");
+                    return;
+                }
             }
         });
 

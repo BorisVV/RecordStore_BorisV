@@ -58,7 +58,7 @@ public class Consignors_Model extends AbstractTableModel {
 
     public void count_Rows() {
         row_CountCon = 0;
-        //Move coursor to the start of the first row
+        //Move cursor to the start of the first row
         try {
             resultSetCon.beforeFirst();
             //moves cursor forward one row
@@ -70,9 +70,6 @@ public class Consignors_Model extends AbstractTableModel {
             System.out.println("Error counting rows " + e);
         }
     }
-
-
-
 
     @Override
     public String getColumnName(int colName){
