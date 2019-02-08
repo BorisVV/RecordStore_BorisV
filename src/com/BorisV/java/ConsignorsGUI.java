@@ -15,6 +15,7 @@ public class ConsignorsGUI extends JFrame {
 
 //    Consignors_Model consignors_model;
     Add_New_Consignor_GUI add_new_consignor_gui;
+    Modify_consignorGUI modify_consignorGUI;
 
     public ConsignorsGUI(Consignors_Model consignors_model) {
         setContentPane(rootPanel);
@@ -44,6 +45,8 @@ public class ConsignorsGUI extends JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Please select a row!");
                     return;
                 }
+
+                modify_consignorGUI = new Modify_consignorGUI(consignors_model);
             }
         });
 
