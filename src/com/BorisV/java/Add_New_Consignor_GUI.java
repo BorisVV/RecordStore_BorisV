@@ -19,8 +19,6 @@ public class Add_New_Consignor_GUI extends JFrame{
         setSize(400, 400);
         setVisible(true);
 
-
-
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

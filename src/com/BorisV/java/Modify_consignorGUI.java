@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class modify_consignorGUI extends JFrame {
+public class Modify_consignorGUI extends JFrame {
     private JPanel rootPanel;
     private JTextField oldNameText;
     private JTextField newNameText;
@@ -16,4 +16,14 @@ public class modify_consignorGUI extends JFrame {
     private JLabel newPhone;
     private JButton saveButton;
     private JButton cancelButton;
+
+    public Modify_consignorGUI(final Consignors_Model consignors_model){
+        setContentPane(rootPanel);
+        setTitle("Modify Consignor");
+        pack();
+        setLocation(350, 200);
+        setSize(300, 300);
+        setVisible(true);
+    }
+
 }
