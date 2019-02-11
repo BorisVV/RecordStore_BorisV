@@ -1,6 +1,9 @@
 package com.BorisV.java;
 
+import com.sun.javafx.binding.StringFormatter;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,6 +27,21 @@ public class Modify_consignorGUI extends JFrame {
         setLocation(350, 200);
         setSize(300, 300);
         setVisible(true);
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String newName = newNameText.getText();
+                String newPhone = newPhoneText.getText();
+
+                if (newName.equals("")) {
+                    JOptionPane.showMessageDialog(rootPane, "Please add a new name");
+                    newNameText.requestFocus();
+                }
+            }
+        });
+
+        cancelButton.addActionListener(e -> dispose());
     }
 
 }
