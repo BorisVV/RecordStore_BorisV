@@ -38,6 +38,11 @@ public class Modify_consignorGUI extends JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Please add a new name");
                     newNameText.requestFocus();
                 }
+
+                if (newPhone.equals("")){
+                    JOptionPane.showMessageDialog(rootPane, "Please add a new phone number");
+                    newPhoneText.requestFocus();
+                }
             }
         });
 
